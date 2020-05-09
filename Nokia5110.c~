@@ -1,0 +1,105 @@
+/*
+ * main.c
+ */
+
+// Signal        (Nokia 5110) LM4F120 pin
+// Reset         (RST, pin 1) connected to PA7
+// SSI0Fss       (CE,  pin 2) connected to PA3
+// Data/Command  (DC,  pin 3) connected to PA6
+// SSI0Tx        (Din, pin 4) connected to PA5
+// SSI0Clk       (Clk, pin 5) connected to PA2
+// 3.3V          (Vcc, pin 6) power
+// not connected (BL,  pin 7) back light
+// Ground        (Gnd, pin 8)
+
+#include <stdint.h>
+#include "Nokia5110.h"
+#include "tm4c123gh6pm.h"
+#include "SPI_Driver.h"
+#include "PLL_Init.h"
+
+void Nokia5110_SetCursor(unsigned char newX, unsigned char newY){
+  if((newX > 11) || (newY > 5)){        // bad input
+    return;                             // do nothing
+  }
+  // multiply newX by 7 because each character is 7 columns wide
+  LCD_Write(COMMAND, 0x80|(newX*7));     // setting bit 7 updates X-position
+  LCD_Write(COMMAND, 0x40|newY);         // setting bit 6 updates Y-position
+}
+
+
+void LCD_Write(xmit_type_t mode, char data)
+{
+  if(mode == COMMAND)
+  {
+    GPIO_PORTA_DATA_R &= ~0x40;
+  }
+  else if(mode == DATA)
+  {
+    GPIO_PORTA_DATA_R |= 0x40; 
+  }
+  while((SSI0_SR_R&SSI_SR_TFE)==0){};
+  SSI0_DR_R = data;  // write to FIFO in order to xmit
+  while((SSI0_SR_R&SSI_SR_RNE)==0){};
+  data = SSI0_DR_R;  // read from FIFO to clear recv FIFO from useless data
+}
+
+void SetState_Reset()
+{
+  int delay;
+  GPIO_PORTA_DATA_R &= ~RESET_PIN;            // reset the LCD to a known state
+  for(delay=0; delay<10; delay=delay+1);      // delay minimum 100 ns
+  GPIO_PORTA_DATA_R |= RESET_PIN;            // negative logic
+}
+
+void Clear_Display()
+{
+  Nokia5110_SetCursor(0,0);
+  int idx1, idx2;
+  for(idx2 = 0; idx2 < 5; ++idx2)
+  {
+    for(idx1 = 0; idx1 < 84; ++idx1)
+    {
+      LCD_Write(DATA, 0x00);
+    }
+  }
+  Nokia5110_SetCursor(0,0);
+}
+
+void Nokia5110_Config()
+{ 
+  SetState_Reset();
+ // LCD_Write(COMMAND,
+ //	    0x20 |(0<<PD | 0 << V | 1 << H)); // PD = 0, V = 0, H = 1
+  LCD_Write(COMMAND, 0x21);
+  LCD_Write(COMMAND, 0xB8);              // set LCD Vop (contrast): try 0xB1 (good @ 3.3V) or 0xBF if your display is too dark
+  LCD_Write(COMMAND, 0x04);              // set temp coefficient
+  LCD_Write(COMMAND, 0x14);              // LCD bias mode 1:48: try 0x13 or 0x14 
+  LCD_Write(COMMAND, 
+	    0x20 | (0<<PD | 0 << V | 0 << H)); // PD = 0, V = 0, H = 0
+                                               // Regular Instruction set
+  LCD_Write(COMMAND, 0x0C);              // Display Control normal
+  //LCD_Write(COMMAND, 0x0C);              // Display Control normal
+  int idx;
+  LCD_Write(COMMAND, 0x80);
+  LCD_Write(COMMAND, 0x40);
+
+  for(idx = 0; idx < 84; ++idx){
+     LCD_Write(DATA, 0xFF);                 // Write some dumb data to display
+  }
+
+  Nokia5110_SetCursor(0,0);
+  for(idx = 0; idx < 40; ++idx){
+    LCD_Write(DATA, 0xFF);                 // Write some dumb data to display
+  }
+  Nokia5110_SetCursor(0,3);
+  for(idx = 0; idx < 40; ++idx){
+    LCD_Write(DATA, 0xFF);                 // Write some dumb data to display
+  }
+}
+
+void InitializeNokia5110(void)
+{
+   Config_SPI();
+   Nokia5110_Config();
+}

@@ -1,0 +1,421 @@
+******************************************************************************
+                  TI ARM Linker PC v16.9.0                     
+******************************************************************************
+>> Linked Sat May 09 16:16:47 2020
+
+OUTPUT FILE NAME:   <RealTime_Voltage_Display.out>
+ENTRY POINT SYMBOL: "_c_int00"  address: 000014b1
+
+
+MEMORY CONFIGURATION
+
+         name            origin    length      used     unused   attr    fill
+----------------------  --------  ---------  --------  --------  ----  --------
+  FLASH                 00000000   00040000  0000180e  0003e7f2  R  X
+  SRAM                  20000000   00008000  000005e4  00007a1c  RW X
+
+
+SEGMENT ALLOCATION MAP
+
+run origin  load origin   length   init length attrs members
+----------  ----------- ---------- ----------- ----- -------
+00000000    00000000    00001810   00001810    r-x
+  00000000    00000000    0000026c   0000026c    r-- .intvecs
+  0000026c    0000026c    0000144e   0000144e    r-x .text
+  000016bc    000016bc    0000010c   0000010c    r-- .const
+  000017c8    000017c8    00000048   00000048    r-- .cinit
+20000000    20000000    000005e4   00000000    rw-
+  20000000    20000000    0000026c   00000000    rw- .vtable
+  2000026c    2000026c    00000200   00000000    rw- .stack
+  2000046c    2000046c    0000015c   00000000    rw- .bss
+  200005c8    200005c8    0000001c   00000000    rw- .data
+
+
+SECTION ALLOCATION MAP
+
+ output                                  attributes/
+section   page    origin      length       input sections
+--------  ----  ----------  ----------   ----------------
+.intvecs   0    00000000    0000026c     
+                  00000000    0000026c     tm4c123gh6pm_startup_ccs.obj (.intvecs)
+
+.text      0    0000026c    0000144e     
+                  0000026c    000003c0     interrupt.obj (.text)
+                  0000062c    00000290     Display_Engine.obj (.text)
+                  000008bc    000001f8     UART_Driver.obj (.text)
+                  00000ab4    000001cc     ADC_VoltageIn.obj (.text)
+                  00000c80    000001b6     rtsv7M4_T_le_v4SPD16_eabi.lib : fd_add_t2.obj (.text)
+                  00000e36    00000002                                   : mpu_init.obj (.text)
+                  00000e38    000001a8     Nokia5110.obj (.text)
+                  00000fe0    00000100     SPI_Driver.obj (.text)
+                  000010e0    000000fc     rtsv7M4_T_le_v4SPD16_eabi.lib : fd_mul_t2.obj (.text)
+                  000011dc    0000009c                                   : memcpy_t2.obj (.text)
+                  00001278    0000007a                                   : memset_t2.obj (.text)
+                  000012f2    00000002                                   : startup.obj (.text)
+                  000012f4    00000074     PLL_Init.obj (.text)
+                  00001368    00000070     rtsv7M4_T_le_v4SPD16_eabi.lib : autoinit.obj (.text)
+                  000013d8    0000006e                                   : fd_tos_t2.obj (.text)
+                  00001446    00000068                                   : copy_decompress_lzss.obj (.text:decompress:lzss)
+                  000014ae    00000002     --HOLE-- [fill = 0]
+                  000014b0    00000054                                   : boot.obj (.text)
+                  00001504    00000054                                   : exit.obj (.text)
+                  00001558    0000004c                                   : cpy_tbl.obj (.text)
+                  000015a4    00000048                                   : fd_toi_t2.obj (.text)
+                  000015ec    0000003e     cpu.obj (.text)
+                  0000162a    00000038     rtsv7M4_T_le_v4SPD16_eabi.lib : fs_tod_t2.obj (.text)
+                  00001662    00000002     --HOLE-- [fill = 0]
+                  00001664    00000018                                   : args_main.obj (.text)
+                  0000167c    00000014                                   : _lock.obj (.text)
+                  00001690    0000000e                                   : copy_decompress_none.obj (.text:decompress:none)
+                  0000169e    0000000c                                   : copy_zero_init.obj (.text:decompress:ZI)
+                  000016aa    0000000c     tm4c123gh6pm_startup_ccs.obj (.text)
+                  000016b6    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : pre_init.obj (.text)
+
+.const     0    000016bc    0000010c     
+                  000016bc    0000009c     interrupt.obj (.const:g_pui32Regs)
+                  00001758    00000020     interrupt.obj (.const:g_pui32Priority)
+                  00001778    00000014     interrupt.obj (.const:g_pui32Dii16Regs)
+                  0000178c    00000014     interrupt.obj (.const:g_pui32EnRegs)
+                  000017a0    00000014     interrupt.obj (.const:g_pui32PendRegs)
+                  000017b4    00000014     interrupt.obj (.const:g_pui32UnpendRegs)
+
+.cinit     0    000017c8    00000048     
+                  000017c8    00000011     (.cinit..data.load) [load image, compression = lzss]
+                  000017d9    00000003     --HOLE-- [fill = 0]
+                  000017dc    0000000c     (__TI_handler_table)
+                  000017e8    00000008     (.cinit..bss.load) [load image, compression = zero_init]
+                  000017f0    00000008     (.cinit..vtable.load) [load image, compression = zero_init]
+                  000017f8    00000018     (__TI_cinit_table)
+
+.init_array 
+*          0    00000000    00000000     UNINITIALIZED
+
+.vtable    0    20000000    0000026c     UNINITIALIZED
+                  20000000    0000026c     interrupt.obj (.vtable)
+
+.stack     0    2000026c    00000200     UNINITIALIZED
+                  2000026c    00000200     --HOLE--
+
+.bss       0    2000046c    0000015c     UNINITIALIZED
+                  2000046c    00000150     (.common:voltages)
+                  200005bc    00000004     (.common:f)
+                  200005c0    00000004     (.common:g_pixel_count)
+                  200005c4    00000004     (.common:voltageIn)
+
+.data      0    200005c8    0000001c     UNINITIALIZED
+                  200005c8    0000000c     rtsv7M4_T_le_v4SPD16_eabi.lib : exit.obj (.data:$O1$$)
+                  200005d4    00000008                                   : _lock.obj (.data:$O1$$)
+                  200005dc    00000004     Display_Engine.obj (.data)
+                  200005e0    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : stkdepth_vars.obj (.data)
+
+MODULE SUMMARY
+
+       Module                         code   ro data   rw data
+       ------                         ----   -------   -------
+    .\
+       Display_Engine.obj             656    0         348    
+       tm4c123gh6pm_startup_ccs.obj   12     620       0      
+       UART_Driver.obj                504    0         0      
+       ADC_VoltageIn.obj              460    0         4      
+       Nokia5110.obj                  424    0         0      
+       SPI_Driver.obj                 256    0         0      
+       PLL_Init.obj                   116    0         0      
+    +--+------------------------------+------+---------+---------+
+       Total:                         2428   620       352    
+                                                              
+    .\driverlib\
+       interrupt.obj                  960    268       620    
+       cpu.obj                        62     0         0      
+    +--+------------------------------+------+---------+---------+
+       Total:                         1022   268       620    
+                                                              
+    C:\ti\ccsv7\tools\compiler\ti-cgt-arm_16.9.0.LTS\lib\rtsv7M4_T_le_v4SPD16_eabi.lib
+       fd_add_t2.obj                  438    0         0      
+       fd_mul_t2.obj                  252    0         0      
+       memcpy_t2.obj                  156    0         0      
+       memset_t2.obj                  122    0         0      
+       autoinit.obj                   112    0         0      
+       fd_tos_t2.obj                  110    0         0      
+       copy_decompress_lzss.obj       104    0         0      
+       exit.obj                       84     0         12     
+       boot.obj                       84     0         0      
+       cpy_tbl.obj                    76     0         0      
+       fd_toi_t2.obj                  72     0         0      
+       fs_tod_t2.obj                  56     0         0      
+       _lock.obj                      20     0         8      
+       args_main.obj                  24     0         0      
+       copy_decompress_none.obj       14     0         0      
+       copy_zero_init.obj             12     0         0      
+       pre_init.obj                   4      0         0      
+       stkdepth_vars.obj              0      0         4      
+       mpu_init.obj                   2      0         0      
+       startup.obj                    2      0         0      
+    +--+------------------------------+------+---------+---------+
+       Total:                         1744   0         24     
+                                                              
+       Stack:                         0      0         512    
+       Linker Generated:              0      69        0      
+    +--+------------------------------+------+---------+---------+
+       Grand Total:                   5194   957       1508   
+
+
+LINKER GENERATED COPY TABLES
+
+__TI_cinit_table @ 000017f8 records: 3, size/record: 8, table size: 24
+	.data: load addr=000017c8, load size=00000011 bytes, run addr=200005c8, run size=0000001c bytes, compression=lzss
+	.bss: load addr=000017e8, load size=00000008 bytes, run addr=2000046c, run size=0000015c bytes, compression=zero_init
+	.vtable: load addr=000017f0, load size=00000008 bytes, run addr=20000000, run size=0000026c bytes, compression=zero_init
+
+
+LINKER GENERATED HANDLER TABLE
+
+__TI_handler_table @ 000017dc records: 3, size/record: 4, table size: 12
+	index: 0, handler: __TI_zero_init
+	index: 1, handler: __TI_decompress_lzss
+	index: 2, handler: __TI_decompress_none
+
+
+GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
+
+address   name                           
+-------   ----                           
+00000bc3  ADC3_Int_Handler               
+00000b43  ADC_Init                       
+00001505  C$$EXIT                        
+00001621  CPUbasepriGet                  
+00001613  CPUbasepriSet                  
+000015ed  CPUcpsid                       
+00001603  CPUcpsie                       
+000015f9  CPUprimask                     
+0000160f  CPUwfi                         
+00000f37  Clear_Display                  
+00000fe1  Config_SPI                     
+0000083f  Display_Driver_Init            
+000006c5  Display_Output                 
+00000743  Display_Voltage                
+00000ab5  GPIO_Input_Config              
+00000c09  Hardware_Init                  
+00000fc7  InitializeNokia5110            
+0000062d  Initialize_Samples             
+0000042d  IntDisable                     
+000003bb  IntEnable                      
+0000049f  IntIsEnabled                   
+0000027f  IntMasterDisable               
+0000026f  IntMasterEnable                
+00000595  IntPendClear                   
+00000525  IntPendSet                     
+00000397  IntPriorityGet                 
+0000030f  IntPriorityGroupingGet         
+000002f5  IntPriorityGroupingSet         
+000005ef  IntPriorityMaskGet             
+000005e3  IntPriorityMaskSet             
+00000347  IntPrioritySet                 
+0000028f  IntRegister                    
+000005f7  IntTrigger                     
+000002e1  IntUnregister                  
+00000eb1  LCD_Write                      
+00000f7f  Nokia5110_Config               
+00000e75  Nokia5110_SetCursor            
+00000e39  Nokia5110_SetX                 
+00000e57  Nokia5110_SetY                 
+000012f5  PLL_Init                       
+000016ab  ResetISR                       
+UNDEFED   SHT$$INIT_ARRAY$$Base          
+UNDEFED   SHT$$INIT_ARRAY$$Limit         
+00000681  Sample_Pattern                 
+00000f05  SetState_Reset                 
+000007db  Timer1A_Config                 
+000007cb  Timer1A_Handler                
+00000ae9  Trigger_Timer_Config           
+00000921  UART1_Init                     
+00000967  UART1_OutChar                  
+00000983  UART1_OutUDec                  
+000008bd  UART_Init                      
+000009b3  UART_OutChar                   
+000009ff  UART_OutFloat                  
+000009cf  UART_OutUDec                   
+2000046c  __STACK_END                    
+00000200  __STACK_SIZE                   
+2000046c  __STACK_TOP                    
+000017f8  __TI_CINIT_Base                
+00001810  __TI_CINIT_Limit               
+000017dc  __TI_Handler_Table_Base        
+000017e8  __TI_Handler_Table_Limit       
+00001369  __TI_auto_init                 
+200005c8  __TI_cleanup_ptr               
+00001447  __TI_decompress_lzss           
+00001691  __TI_decompress_none           
+200005cc  __TI_dtors_ptr                 
+200005d0  __TI_enable_exit_profile_output
+ffffffff  __TI_pprof_out_hndl            
+ffffffff  __TI_prof_data_size            
+ffffffff  __TI_prof_data_start           
+00000000  __TI_static_base__             
+0000169f  __TI_zero_init                 
+000013d9  __aeabi_d2f                    
+000015a5  __aeabi_d2iz                   
+00000c8b  __aeabi_dadd                   
+000010e1  __aeabi_dmul                   
+00000c81  __aeabi_dsub                   
+0000162b  __aeabi_f2d                    
+00001279  __aeabi_memclr                 
+00001279  __aeabi_memclr4                
+00001279  __aeabi_memclr8                
+000011dd  __aeabi_memcpy                 
+000011dd  __aeabi_memcpy4                
+000011dd  __aeabi_memcpy8                
+0000127b  __aeabi_memset                 
+0000127b  __aeabi_memset4                
+0000127b  __aeabi_memset8                
+ffffffff  __binit__                      
+ffffffff  __c_args__                     
+00000e37  __mpu_init                     
+2000026c  __stack                        
+00001665  _args_main                     
+000014b1  _c_int00                       
+200005d4  _lock                          
+0000168b  _nop                           
+00001683  _register_lock                 
+0000167d  _register_unlock               
+000012f3  _system_post_cinit             
+000016b7  _system_pre_init               
+200005d8  _unlock                        
+00001509  abort                          
+ffffffff  binit                          
+00001559  copy_in                        
+00001511  exit                           
+200005bc  f                              
+200005dc  flag                           
+20000000  g_pfnRAMVectors                
+00000000  g_pfnVectors                   
+200005c0  g_pixel_count                  
+00000851  main                           
+200005e0  main_func_sp                   
+000011dd  memcpy                         
+00001281  memset                         
+200005c4  voltageIn                      
+2000046c  voltages                       
+
+
+GLOBAL SYMBOLS: SORTED BY Symbol Address 
+
+address   name                           
+-------   ----                           
+00000000  __TI_static_base__             
+00000000  g_pfnVectors                   
+00000200  __STACK_SIZE                   
+0000026f  IntMasterEnable                
+0000027f  IntMasterDisable               
+0000028f  IntRegister                    
+000002e1  IntUnregister                  
+000002f5  IntPriorityGroupingSet         
+0000030f  IntPriorityGroupingGet         
+00000347  IntPrioritySet                 
+00000397  IntPriorityGet                 
+000003bb  IntEnable                      
+0000042d  IntDisable                     
+0000049f  IntIsEnabled                   
+00000525  IntPendSet                     
+00000595  IntPendClear                   
+000005e3  IntPriorityMaskSet             
+000005ef  IntPriorityMaskGet             
+000005f7  IntTrigger                     
+0000062d  Initialize_Samples             
+00000681  Sample_Pattern                 
+000006c5  Display_Output                 
+00000743  Display_Voltage                
+000007cb  Timer1A_Handler                
+000007db  Timer1A_Config                 
+0000083f  Display_Driver_Init            
+00000851  main                           
+000008bd  UART_Init                      
+00000921  UART1_Init                     
+00000967  UART1_OutChar                  
+00000983  UART1_OutUDec                  
+000009b3  UART_OutChar                   
+000009cf  UART_OutUDec                   
+000009ff  UART_OutFloat                  
+00000ab5  GPIO_Input_Config              
+00000ae9  Trigger_Timer_Config           
+00000b43  ADC_Init                       
+00000bc3  ADC3_Int_Handler               
+00000c09  Hardware_Init                  
+00000c81  __aeabi_dsub                   
+00000c8b  __aeabi_dadd                   
+00000e37  __mpu_init                     
+00000e39  Nokia5110_SetX                 
+00000e57  Nokia5110_SetY                 
+00000e75  Nokia5110_SetCursor            
+00000eb1  LCD_Write                      
+00000f05  SetState_Reset                 
+00000f37  Clear_Display                  
+00000f7f  Nokia5110_Config               
+00000fc7  InitializeNokia5110            
+00000fe1  Config_SPI                     
+000010e1  __aeabi_dmul                   
+000011dd  __aeabi_memcpy                 
+000011dd  __aeabi_memcpy4                
+000011dd  __aeabi_memcpy8                
+000011dd  memcpy                         
+00001279  __aeabi_memclr                 
+00001279  __aeabi_memclr4                
+00001279  __aeabi_memclr8                
+0000127b  __aeabi_memset                 
+0000127b  __aeabi_memset4                
+0000127b  __aeabi_memset8                
+00001281  memset                         
+000012f3  _system_post_cinit             
+000012f5  PLL_Init                       
+00001369  __TI_auto_init                 
+000013d9  __aeabi_d2f                    
+00001447  __TI_decompress_lzss           
+000014b1  _c_int00                       
+00001505  C$$EXIT                        
+00001509  abort                          
+00001511  exit                           
+00001559  copy_in                        
+000015a5  __aeabi_d2iz                   
+000015ed  CPUcpsid                       
+000015f9  CPUprimask                     
+00001603  CPUcpsie                       
+0000160f  CPUwfi                         
+00001613  CPUbasepriSet                  
+00001621  CPUbasepriGet                  
+0000162b  __aeabi_f2d                    
+00001665  _args_main                     
+0000167d  _register_unlock               
+00001683  _register_lock                 
+0000168b  _nop                           
+00001691  __TI_decompress_none           
+0000169f  __TI_zero_init                 
+000016ab  ResetISR                       
+000016b7  _system_pre_init               
+000017dc  __TI_Handler_Table_Base        
+000017e8  __TI_Handler_Table_Limit       
+000017f8  __TI_CINIT_Base                
+00001810  __TI_CINIT_Limit               
+20000000  g_pfnRAMVectors                
+2000026c  __stack                        
+2000046c  __STACK_END                    
+2000046c  __STACK_TOP                    
+2000046c  voltages                       
+200005bc  f                              
+200005c0  g_pixel_count                  
+200005c4  voltageIn                      
+200005c8  __TI_cleanup_ptr               
+200005cc  __TI_dtors_ptr                 
+200005d0  __TI_enable_exit_profile_output
+200005d4  _lock                          
+200005d8  _unlock                        
+200005dc  flag                           
+200005e0  main_func_sp                   
+ffffffff  __TI_pprof_out_hndl            
+ffffffff  __TI_prof_data_size            
+ffffffff  __TI_prof_data_start           
+ffffffff  __binit__                      
+ffffffff  __c_args__                     
+ffffffff  binit                          
+UNDEFED   SHT$$INIT_ARRAY$$Base          
+UNDEFED   SHT$$INIT_ARRAY$$Limit         
+
+[116 symbols]
