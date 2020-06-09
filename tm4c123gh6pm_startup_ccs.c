@@ -43,6 +43,8 @@ static void IntDefaultHandler(void);
 extern void _c_int00(void);
 extern void Timer1A_Handler(void);
 extern void ADC3_Int_Handler(void);
+extern void GPIO_PortE_Handler(void);
+extern void Timer0B_Handler(void);
 //*****************************************************************************
 //
 // Linker variable that marks the top of the stack.
@@ -88,7 +90,7 @@ void (* const g_pfnVectors[])(void) =
     IntDefaultHandler,                      // GPIO Port B
     IntDefaultHandler,                      // GPIO Port C
     IntDefaultHandler,                      // GPIO Port D
-    IntDefaultHandler,                      // GPIO Port E
+    GPIO_PortE_Handler,                     // GPIO Port E
     IntDefaultHandler,                      // UART0 Rx and Tx
     IntDefaultHandler,                      // UART1 Rx and Tx
     IntDefaultHandler,                      // SSI0 Rx and Tx
@@ -104,7 +106,7 @@ void (* const g_pfnVectors[])(void) =
     ADC3_Int_Handler,                      // ADC Sequence 3
     IntDefaultHandler,                      // Watchdog timer
     IntDefaultHandler,                      // Timer 0 subtimer A
-    IntDefaultHandler,                      // Timer 0 subtimer B
+    Timer0B_Handler,                        // Timer 0 subtimer B
     Timer1A_Handler,                        // Timer 1 subtimer A
     IntDefaultHandler,                      // Timer 1 subtimer B
     IntDefaultHandler,                      // Timer 2 subtimer A
@@ -277,7 +279,7 @@ FaultISR(void)
     //
     // Enter an infinite loop.
     //
-    while(1)
+   while(1)
     {
     }
 }

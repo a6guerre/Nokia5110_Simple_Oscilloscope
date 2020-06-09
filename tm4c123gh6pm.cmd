@@ -20,7 +20,7 @@ MEMORY
 /* If you are using CCS for building, it is probably better to make any such */
 /* modifications in your CCS project and leave this file alone.              */
 /*                                                                           */
-/* --heap_size=0                                                             */
+   --heap_size=4000
 /* --stack_size=256                                                          */
 /* --library=rtsv7M4_T_le_eabi.lib                                           */
 

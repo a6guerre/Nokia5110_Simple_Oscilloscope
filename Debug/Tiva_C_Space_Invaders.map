@@ -1,0 +1,602 @@
+******************************************************************************
+                  TI ARM Linker PC v16.9.0                     
+******************************************************************************
+>> Linked Sat Jun 06 16:51:53 2020
+
+OUTPUT FILE NAME:   <Tiva_C_Space_Invaders.out>
+ENTRY POINT SYMBOL: "_c_int00"  address: 000030fd
+
+
+MEMORY CONFIGURATION
+
+         name            origin    length      used     unused   attr    fill
+----------------------  --------  ---------  --------  --------  ----  --------
+  FLASH                 00000000   00040000  00003a0e  0003c5f2  R  X
+  SRAM                  20000000   00008000  00001a5a  000065a6  RW X
+
+
+SEGMENT ALLOCATION MAP
+
+run origin  load origin   length   init length attrs members
+----------  ----------- ---------- ----------- ----- -------
+00000000    00000000    00003a10   00003a10    r-x
+  00000000    00000000    0000026c   0000026c    r-- .intvecs
+  0000026c    0000026c    0000312a   0000312a    r-x .text
+  00003398    00003398    00000618   00000618    r-- .const
+  000039b0    000039b0    00000060   00000060    r-- .cinit
+20000000    20000000    00001a61   00000000    rw-
+  20000000    20000000    0000026c   00000000    rw- .vtable
+  20000270    20000270    00000fa0   00000000    rw- .sysmem
+  20001210    20001210    00000615   00000000    rw- .bss
+  20001828    20001828    00000200   00000000    rw- .stack
+  20001a28    20001a28    00000039   00000000    rw- .data
+
+
+SECTION ALLOCATION MAP
+
+ output                                  attributes/
+section   page    origin      length       input sections
+--------  ----  ----------  ----------   ----------------
+.intvecs   0    00000000    0000026c     
+                  00000000    0000026c     tm4c123gh6pm_startup_ccs.obj (.intvecs)
+
+.text      0    0000026c    0000312a     
+                  0000026c    0000127c     Display_Engine.obj (.text)
+                  000014e8    000005bc     Nokia5110.obj (.text)
+                  00001aa4    000003d0     rtsv7M4_T_le_v4SPD16_eabi.lib : memory.obj (.text)
+                  00001e74    000003c0     interrupt.obj (.text)
+                  00002234    00000214     linked_lists.obj (.text)
+                  00002448    000001f8     UART_Driver.obj (.text)
+                  00002640    000001cc     ADC_VoltageIn.obj (.text)
+                  0000280c    000001b6     rtsv7M4_T_le_v4SPD16_eabi.lib : fd_add_t2.obj (.text)
+                  000029c2    00000136                                   : fd_div_t2.obj (.text)
+                  00002af8    00000134     Button.obj (.text)
+                  00002c2c    00000100     SPI_Driver.obj (.text)
+                  00002d2c    000000fc     rtsv7M4_T_le_v4SPD16_eabi.lib : fd_mul_t2.obj (.text)
+                  00002e28    0000009c                                   : memcpy_t2.obj (.text)
+                  00002ec4    0000007a                                   : memset_t2.obj (.text)
+                  00002f3e    00000002                                   : mpu_init.obj (.text)
+                  00002f40    00000074     PLL_Init.obj (.text)
+                  00002fb4    00000070     rtsv7M4_T_le_v4SPD16_eabi.lib : autoinit.obj (.text)
+                  00003024    0000006e                                   : fd_tos_t2.obj (.text)
+                  00003092    00000068                                   : copy_decompress_lzss.obj (.text:decompress:lzss)
+                  000030fa    00000002                                   : startup.obj (.text)
+                  000030fc    00000054                                   : boot.obj (.text)
+                  00003150    00000054                                   : exit.obj (.text)
+                  000031a4    0000004c                                   : cpy_tbl.obj (.text)
+                  000031f0    0000004c                                   : rand.obj (.text)
+                  0000323c    00000048                                   : fd_toi_t2.obj (.text)
+                  00003284    00000044                                   : fd_tou_t2.obj (.text)
+                  000032c8    0000003e     cpu.obj (.text)
+                  00003306    00000038     rtsv7M4_T_le_v4SPD16_eabi.lib : fs_tod_t2.obj (.text)
+                  0000333e    00000002     --HOLE-- [fill = 0]
+                  00003340    00000018                                   : args_main.obj (.text)
+                  00003358    00000014                                   : _lock.obj (.text)
+                  0000336c    0000000e                                   : copy_decompress_none.obj (.text:decompress:none)
+                  0000337a    0000000c                                   : copy_zero_init.obj (.text:decompress:ZI)
+                  00003386    0000000c     tm4c123gh6pm_startup_ccs.obj (.text)
+                  00003392    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : pre_init.obj (.text)
+
+.const     0    00003398    00000618     
+                  00003398    000001e0     Nokia5110.obj (.const:ASCII)
+                  00003578    000000d7     Display_Engine.obj (.const:.string:PlayerShip0)
+                  0000364f    000000c7     Display_Engine.obj (.const:.string:ClearEnemy)
+                  00003716    000000c7     Display_Engine.obj (.const:.string:Enemy10Point1)
+                  000037dd    000000c7     Display_Engine.obj (.const:.string:SmallEnemy20PointB)
+                  000038a4    0000009c     interrupt.obj (.const:g_pui32Regs)
+                  00003940    00000020     interrupt.obj (.const:g_pui32Priority)
+                  00003960    00000014     interrupt.obj (.const:g_pui32Dii16Regs)
+                  00003974    00000014     interrupt.obj (.const:g_pui32EnRegs)
+                  00003988    00000014     interrupt.obj (.const:g_pui32PendRegs)
+                  0000399c    00000014     interrupt.obj (.const:g_pui32UnpendRegs)
+
+.cinit     0    000039b0    00000060     
+                  000039b0    00000029     (.cinit..data.load) [load image, compression = lzss]
+                  000039d9    00000003     --HOLE-- [fill = 0]
+                  000039dc    0000000c     (__TI_handler_table)
+                  000039e8    00000008     (.cinit..bss.load) [load image, compression = zero_init]
+                  000039f0    00000008     (.cinit..vtable.load) [load image, compression = zero_init]
+                  000039f8    00000018     (__TI_cinit_table)
+
+.init_array 
+*          0    00000000    00000000     UNINITIALIZED
+
+.vtable    0    20000000    0000026c     UNINITIALIZED
+                  20000000    0000026c     interrupt.obj (.vtable)
+
+.sysmem    0    20000270    00000fa0     UNINITIALIZED
+                  20000270    00000008     rtsv7M4_T_le_v4SPD16_eabi.lib : memory.obj (.sysmem)
+                  20000278    00000f98     --HOLE--
+
+.bss       0    20001210    00000615     UNINITIALIZED
+                  20001210    000003f0     (.common:Screen)
+                  20001600    00000150     (.common:voltages)
+                  20001750    00000090     (.common:enemies)
+                  200017e0    00000010     (.common:available_enemies)
+                  200017f0    0000000c     (.common:player)
+                  200017fc    00000004     (.common:bullet_list)
+                  20001800    00000004     (.common:count)
+                  20001804    00000004     (.common:enemy_bullets)
+                  20001808    00000004     (.common:f)
+                  2000180c    00000004     (.common:g_animate_counter)
+                  20001810    00000004     (.common:g_has_launched)
+                  20001814    00000004     (.common:g_launched)
+                  20001818    00000004     (.common:g_propogate_counter)
+                  2000181c    00000004     (.common:mapping)
+                  20001820    00000004     (.common:voltageIn)
+                  20001824    00000001     (.common:g_pixel_count)
+
+.stack     0    20001828    00000200     UNINITIALIZED
+                  20001828    00000200     --HOLE--
+
+.data      0    20001a28    00000039     UNINITIALIZED
+                  20001a28    00000010     Display_Engine.obj (.data)
+                  20001a38    0000000c     rtsv7M4_T_le_v4SPD16_eabi.lib : exit.obj (.data:$O1$$)
+                  20001a44    0000000c                                   : memory.obj (.data:$O1$$)
+                  20001a50    00000008                                   : _lock.obj (.data:$O1$$)
+                  20001a58    00000004                                   : rand.obj (.data)
+                  20001a5c    00000004                                   : stkdepth_vars.obj (.data)
+                  20001a60    00000001     Button.obj (.data)
+
+MODULE SUMMARY
+
+       Module                         code    ro data   rw data
+       ------                         ----    -------   -------
+    .\
+       Display_Engine.obj             4732    812       561    
+       Nokia5110.obj                  1468    480       1008   
+       tm4c123gh6pm_startup_ccs.obj   12      620       0      
+       linked_lists.obj               532     0         0      
+       UART_Driver.obj                504     0         0      
+       ADC_VoltageIn.obj              460     0         4      
+       Button.obj                     308     0         1      
+       SPI_Driver.obj                 256     0         0      
+       PLL_Init.obj                   116     0         0      
+    +--+------------------------------+-------+---------+---------+
+       Total:                         8388    1912      1574   
+                                                               
+    .\driverlib\
+       interrupt.obj                  960     268       620    
+       cpu.obj                        62      0         0      
+    +--+------------------------------+-------+---------+---------+
+       Total:                         1022    268       620    
+                                                               
+    C:\ti\ccsv7\tools\compiler\ti-cgt-arm_16.9.0.LTS\lib\rtsv7M4_T_le_v4SPD16_eabi.lib
+       memory.obj                     976     0         12     
+       fd_add_t2.obj                  438     0         0      
+       fd_div_t2.obj                  310     0         0      
+       fd_mul_t2.obj                  252     0         0      
+       memcpy_t2.obj                  156     0         0      
+       memset_t2.obj                  122     0         0      
+       autoinit.obj                   112     0         0      
+       fd_tos_t2.obj                  110     0         0      
+       copy_decompress_lzss.obj       104     0         0      
+       exit.obj                       84      0         12     
+       boot.obj                       84      0         0      
+       rand.obj                       76      0         4      
+       cpy_tbl.obj                    76      0         0      
+       fd_toi_t2.obj                  72      0         0      
+       fd_tou_t2.obj                  68      0         0      
+       fs_tod_t2.obj                  56      0         0      
+       _lock.obj                      20      0         8      
+       args_main.obj                  24      0         0      
+       copy_decompress_none.obj       14      0         0      
+       copy_zero_init.obj             12      0         0      
+       pre_init.obj                   4       0         0      
+       stkdepth_vars.obj              0       0         4      
+       mpu_init.obj                   2       0         0      
+       startup.obj                    2       0         0      
+    +--+------------------------------+-------+---------+---------+
+       Total:                         3174    0         40     
+                                                               
+       Heap:                          0       0         4000   
+       Stack:                         0       0         512    
+       Linker Generated:              0       93        0      
+    +--+------------------------------+-------+---------+---------+
+       Grand Total:                   12584   2273      6746   
+
+
+LINKER GENERATED COPY TABLES
+
+__TI_cinit_table @ 000039f8 records: 3, size/record: 8, table size: 24
+	.data: load addr=000039b0, load size=00000029 bytes, run addr=20001a28, run size=00000039 bytes, compression=lzss
+	.bss: load addr=000039e8, load size=00000008 bytes, run addr=20001210, run size=00000615 bytes, compression=zero_init
+	.vtable: load addr=000039f0, load size=00000008 bytes, run addr=20000000, run size=0000026c bytes, compression=zero_init
+
+
+LINKER GENERATED HANDLER TABLE
+
+__TI_handler_table @ 000039dc records: 3, size/record: 4, table size: 12
+	index: 0, handler: __TI_zero_init
+	index: 1, handler: __TI_decompress_lzss
+	index: 2, handler: __TI_decompress_none
+
+
+GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
+
+address   name                           
+-------   ----                           
+0000274f  ADC3_Int_Handler               
+000026cf  ADC_Init                       
+00002b5d  Button_Config                  
+00003151  C$$EXIT                        
+000032fd  CPUbasepriGet                  
+000032ef  CPUbasepriSet                  
+000032c9  CPUcpsid                       
+000032df  CPUcpsie                       
+000032d5  CPUprimask                     
+000032eb  CPUwfi                         
+0000364f  ClearEnemy                     
+000019f9  Clear_Display                  
+00002c2d  Config_SPI                     
+0000224b  CreateList                     
+00000aa9  Detect_Collision               
+00000819  Detect_Enemy_Logic             
+00000845  Detect_Logic                   
+00000351  Display_BMP                    
+000013a1  Display_Driver_Init            
+00001269  Display_Enemies                
+00000fe9  Display_Output                 
+0000106d  Display_Voltage                
+00001349  DrawTitleScreen                
+00000b8d  End_Screen                     
+00003716  Enemy10Point1                  
+00002641  GPIO_Input_Config              
+00000305  GPIO_PortE_Handler             
+00002795  Hardware_Init                  
+00001a89  InitializeNokia5110            
+000011a1  Initialize_Enemies             
+0000039f  Initialize_Samples             
+00002035  IntDisable                     
+00001fc3  IntEnable                      
+000020a7  IntIsEnabled                   
+00001e87  IntMasterDisable               
+00001e77  IntMasterEnable                
+0000219d  IntPendClear                   
+0000212d  IntPendSet                     
+00001f9f  IntPriorityGet                 
+00001f17  IntPriorityGroupingGet         
+00001efd  IntPriorityGroupingSet         
+000021f7  IntPriorityMaskGet             
+000021eb  IntPriorityMaskSet             
+00001f4f  IntPrioritySet                 
+00001e97  IntRegister                    
+000021ff  IntTrigger                     
+00001ee9  IntUnregister                  
+00001973  LCD_Write                      
+000012e9  LaunchSpaceInvaders            
+00000289  Launch_Bullet                  
+0000162d  Nokia5110_ClearBMP_Bullet      
+00001a41  Nokia5110_Config               
+000014e9  Nokia5110_OutChar              
+0000152f  Nokia5110_OutString            
+000016dd  Nokia5110_PrintBMP             
+00001581  Nokia5110_PrintBMP_Bullet      
+0000154d  Nokia5110_PrintScreen          
+00001933  Nokia5110_SetCursor            
+000018e5  Nokia5110_SetHorizAddr         
+000018d9  Nokia5110_SetVertAddr          
+000018f1  Nokia5110_SetX                 
+00001915  Nokia5110_SetY                 
+00000c39  Oscillate_Enemies              
+00002f41  PLL_Init                       
+00003578  PlayerShip0                    
+0000064d  Propogate_Bullet               
+000005c9  Propogate_Enemy_Bullet         
+00003387  ResetISR                       
+UNDEFED   SHT$$INIT_ARRAY$$Base          
+UNDEFED   SHT$$INIT_ARRAY$$Limit         
+00002235  SafeMalloc                     
+00000f99  Sample_Pattern                 
+20001210  Screen                         
+000019c7  SetState_Reset                 
+000007a3  Shift_Bullets_Left             
+00000711  Shift_Bullets_Right            
+0000075d  Shift_Enemy_Bullets_Left       
+000006d1  Shift_Enemy_Bullets_Right      
+00000525  Shift_Left                     
+000003f3  Shift_Right                    
+000037dd  SmallEnemy20PointB             
+0000026d  Timer0B_Handler                
+00001105  Timer1A_Config                 
+000010f5  Timer1A_Handler                
+00000f89  Title_Screen_Animate           
+00002675  Trigger_Timer_Config           
+000024ad  UART1_Init                     
+000024f3  UART1_OutChar                  
+0000250f  UART1_OutUDec                  
+00002449  UART_Init                      
+0000253f  UART_OutChar                   
+0000258b  UART_OutFloat                  
+0000255b  UART_OutUDec                   
+20001a28  __STACK_END                    
+00000200  __STACK_SIZE                   
+20001a28  __STACK_TOP                    
+00000fa0  __SYSMEM_SIZE                  
+000039f8  __TI_CINIT_Base                
+00003a10  __TI_CINIT_Limit               
+000039dc  __TI_Handler_Table_Base        
+000039e8  __TI_Handler_Table_Limit       
+00002fb5  __TI_auto_init                 
+20001a38  __TI_cleanup_ptr               
+00003093  __TI_decompress_lzss           
+0000336d  __TI_decompress_none           
+20001a3c  __TI_dtors_ptr                 
+20001a40  __TI_enable_exit_profile_output
+ffffffff  __TI_pprof_out_hndl            
+ffffffff  __TI_prof_data_size            
+ffffffff  __TI_prof_data_start           
+00000000  __TI_static_base__             
+0000337b  __TI_zero_init                 
+00003025  __aeabi_d2f                    
+0000323d  __aeabi_d2iz                   
+00003285  __aeabi_d2uiz                  
+00002817  __aeabi_dadd                   
+000029c3  __aeabi_ddiv                   
+00002d2d  __aeabi_dmul                   
+0000280d  __aeabi_dsub                   
+00003307  __aeabi_f2d                    
+00002ec5  __aeabi_memclr                 
+00002ec5  __aeabi_memclr4                
+00002ec5  __aeabi_memclr8                
+00002e29  __aeabi_memcpy                 
+00002e29  __aeabi_memcpy4                
+00002e29  __aeabi_memcpy8                
+00002ec7  __aeabi_memset                 
+00002ec7  __aeabi_memset4                
+00002ec7  __aeabi_memset8                
+ffffffff  __binit__                      
+ffffffff  __c_args__                     
+00002f3f  __mpu_init                     
+20001828  __stack                        
+00003341  _args_main                     
+000030fd  _c_int00                       
+20001a50  _lock                          
+00003367  _nop                           
+0000335f  _register_lock                 
+00003359  _register_unlock               
+20000270  _sys_memory                    
+000030fb  _system_post_cinit             
+00003393  _system_pre_init               
+20001a54  _unlock                        
+00003155  abort                          
+00002387  appendAtEnd                    
+200017e0  available_enemies              
+ffffffff  binit                          
+200017fc  bullet_list                    
+00001e45  calloc                         
+000031a5  copy_in                        
+20001800  count                          
+20001a34  current_state                  
+20001a60  debounce                       
+20001750  enemies                        
+20001804  enemy_bullets                  
+0000315d  exit                           
+20001808  f                              
+20001a28  flag                           
+00001b8f  free                           
+2000180c  g_animate_counter              
+20001a2c  g_animate_counter_div          
+20001a30  g_enemy_counter                
+20001810  g_has_launched                 
+20001814  g_launched                     
+20000000  g_pfnRAMVectors                
+00000000  g_pfnVectors                   
+20001824  g_pixel_count                  
+20001818  g_propogate_counter            
+0000232f  insertAtEnd                    
+0000227b  insertInBeginning              
+000007e9  isWithinXBounds                
+000013dd  main                           
+20001a5c  main_func_sp                   
+00001b25  malloc                         
+2000181c  mapping                        
+00001d59  memalign                       
+00002e29  memcpy                         
+00002ecd  memset                         
+00001aa5  minit                          
+200017f0  player                         
+00002425  printList                      
+00003207  rand                           
+00001c51  realloc                        
+000022a5  removeNode                     
+000023d9  reverseList                    
+000031f1  srand                          
+20001820  voltageIn                      
+20001600  voltages                       
+
+
+GLOBAL SYMBOLS: SORTED BY Symbol Address 
+
+address   name                           
+-------   ----                           
+00000000  __TI_static_base__             
+00000000  g_pfnVectors                   
+00000200  __STACK_SIZE                   
+0000026d  Timer0B_Handler                
+00000289  Launch_Bullet                  
+00000305  GPIO_PortE_Handler             
+00000351  Display_BMP                    
+0000039f  Initialize_Samples             
+000003f3  Shift_Right                    
+00000525  Shift_Left                     
+000005c9  Propogate_Enemy_Bullet         
+0000064d  Propogate_Bullet               
+000006d1  Shift_Enemy_Bullets_Right      
+00000711  Shift_Bullets_Right            
+0000075d  Shift_Enemy_Bullets_Left       
+000007a3  Shift_Bullets_Left             
+000007e9  isWithinXBounds                
+00000819  Detect_Enemy_Logic             
+00000845  Detect_Logic                   
+00000aa9  Detect_Collision               
+00000b8d  End_Screen                     
+00000c39  Oscillate_Enemies              
+00000f89  Title_Screen_Animate           
+00000f99  Sample_Pattern                 
+00000fa0  __SYSMEM_SIZE                  
+00000fe9  Display_Output                 
+0000106d  Display_Voltage                
+000010f5  Timer1A_Handler                
+00001105  Timer1A_Config                 
+000011a1  Initialize_Enemies             
+00001269  Display_Enemies                
+000012e9  LaunchSpaceInvaders            
+00001349  DrawTitleScreen                
+000013a1  Display_Driver_Init            
+000013dd  main                           
+000014e9  Nokia5110_OutChar              
+0000152f  Nokia5110_OutString            
+0000154d  Nokia5110_PrintScreen          
+00001581  Nokia5110_PrintBMP_Bullet      
+0000162d  Nokia5110_ClearBMP_Bullet      
+000016dd  Nokia5110_PrintBMP             
+000018d9  Nokia5110_SetVertAddr          
+000018e5  Nokia5110_SetHorizAddr         
+000018f1  Nokia5110_SetX                 
+00001915  Nokia5110_SetY                 
+00001933  Nokia5110_SetCursor            
+00001973  LCD_Write                      
+000019c7  SetState_Reset                 
+000019f9  Clear_Display                  
+00001a41  Nokia5110_Config               
+00001a89  InitializeNokia5110            
+00001aa5  minit                          
+00001b25  malloc                         
+00001b8f  free                           
+00001c51  realloc                        
+00001d59  memalign                       
+00001e45  calloc                         
+00001e77  IntMasterEnable                
+00001e87  IntMasterDisable               
+00001e97  IntRegister                    
+00001ee9  IntUnregister                  
+00001efd  IntPriorityGroupingSet         
+00001f17  IntPriorityGroupingGet         
+00001f4f  IntPrioritySet                 
+00001f9f  IntPriorityGet                 
+00001fc3  IntEnable                      
+00002035  IntDisable                     
+000020a7  IntIsEnabled                   
+0000212d  IntPendSet                     
+0000219d  IntPendClear                   
+000021eb  IntPriorityMaskSet             
+000021f7  IntPriorityMaskGet             
+000021ff  IntTrigger                     
+00002235  SafeMalloc                     
+0000224b  CreateList                     
+0000227b  insertInBeginning              
+000022a5  removeNode                     
+0000232f  insertAtEnd                    
+00002387  appendAtEnd                    
+000023d9  reverseList                    
+00002425  printList                      
+00002449  UART_Init                      
+000024ad  UART1_Init                     
+000024f3  UART1_OutChar                  
+0000250f  UART1_OutUDec                  
+0000253f  UART_OutChar                   
+0000255b  UART_OutUDec                   
+0000258b  UART_OutFloat                  
+00002641  GPIO_Input_Config              
+00002675  Trigger_Timer_Config           
+000026cf  ADC_Init                       
+0000274f  ADC3_Int_Handler               
+00002795  Hardware_Init                  
+0000280d  __aeabi_dsub                   
+00002817  __aeabi_dadd                   
+000029c3  __aeabi_ddiv                   
+00002b5d  Button_Config                  
+00002c2d  Config_SPI                     
+00002d2d  __aeabi_dmul                   
+00002e29  __aeabi_memcpy                 
+00002e29  __aeabi_memcpy4                
+00002e29  __aeabi_memcpy8                
+00002e29  memcpy                         
+00002ec5  __aeabi_memclr                 
+00002ec5  __aeabi_memclr4                
+00002ec5  __aeabi_memclr8                
+00002ec7  __aeabi_memset                 
+00002ec7  __aeabi_memset4                
+00002ec7  __aeabi_memset8                
+00002ecd  memset                         
+00002f3f  __mpu_init                     
+00002f41  PLL_Init                       
+00002fb5  __TI_auto_init                 
+00003025  __aeabi_d2f                    
+00003093  __TI_decompress_lzss           
+000030fb  _system_post_cinit             
+000030fd  _c_int00                       
+00003151  C$$EXIT                        
+00003155  abort                          
+0000315d  exit                           
+000031a5  copy_in                        
+000031f1  srand                          
+00003207  rand                           
+0000323d  __aeabi_d2iz                   
+00003285  __aeabi_d2uiz                  
+000032c9  CPUcpsid                       
+000032d5  CPUprimask                     
+000032df  CPUcpsie                       
+000032eb  CPUwfi                         
+000032ef  CPUbasepriSet                  
+000032fd  CPUbasepriGet                  
+00003307  __aeabi_f2d                    
+00003341  _args_main                     
+00003359  _register_unlock               
+0000335f  _register_lock                 
+00003367  _nop                           
+0000336d  __TI_decompress_none           
+0000337b  __TI_zero_init                 
+00003387  ResetISR                       
+00003393  _system_pre_init               
+00003578  PlayerShip0                    
+0000364f  ClearEnemy                     
+00003716  Enemy10Point1                  
+000037dd  SmallEnemy20PointB             
+000039dc  __TI_Handler_Table_Base        
+000039e8  __TI_Handler_Table_Limit       
+000039f8  __TI_CINIT_Base                
+00003a10  __TI_CINIT_Limit               
+20000000  g_pfnRAMVectors                
+20000270  _sys_memory                    
+20001210  Screen                         
+20001600  voltages                       
+20001750  enemies                        
+200017e0  available_enemies              
+200017f0  player                         
+200017fc  bullet_list                    
+20001800  count                          
+20001804  enemy_bullets                  
+20001808  f                              
+2000180c  g_animate_counter              
+20001810  g_has_launched                 
+20001814  g_launched                     
+20001818  g_propogate_counter            
+2000181c  mapping                        
+20001820  voltageIn                      
+20001824  g_pixel_count                  
+20001828  __stack                        
+20001a28  __STACK_END                    
+20001a28  __STACK_TOP                    
+20001a28  flag                           
+20001a2c  g_animate_counter_div          
+20001a30  g_enemy_counter                
+20001a34  current_state                  
+20001a38  __TI_cleanup_ptr               
+20001a3c  __TI_dtors_ptr                 
+20001a40  __TI_enable_exit_profile_output
+20001a50  _lock                          
+20001a54  _unlock                        
+20001a5c  main_func_sp                   
+20001a60  debounce                       
+ffffffff  __TI_pprof_out_hndl            
+ffffffff  __TI_prof_data_size            
+ffffffff  __TI_prof_data_start           
+ffffffff  __binit__                      
+ffffffff  __c_args__                     
+ffffffff  binit                          
+UNDEFED   SHT$$INIT_ARRAY$$Base          
+UNDEFED   SHT$$INIT_ARRAY$$Limit         
+
+[188 symbols]
